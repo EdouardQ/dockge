@@ -1,0 +1,15 @@
+services:
+  dockge:
+    image: louislam/dockge:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/dockge/data:/app/data
+      - /opt/stacks:/opt/stacks
+    environment:
+      - DOCKGE_STACKS_DIR=/opt/stacks
+      - DOCKGE_ENABLE_CONSOLE=false
+
+networks:
+  cloudflare:
+      external: true
